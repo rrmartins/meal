@@ -7,6 +7,8 @@ defmodule MealWeb.Router do
 
   scope "/api", MealWeb do
     pipe_through :api
+
+    resources "/meals", MealsController, except: [:new, :edit]
   end
 
   # Enables LiveDashboard only for development
