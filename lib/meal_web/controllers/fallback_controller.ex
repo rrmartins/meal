@@ -16,6 +16,6 @@ defmodule MealWeb.FallbackController do
     conn
     |> put_status(:bad_request)
     |> put_view(ErrorView)
-    |> render("error.json", message: changeset)
+    |> render("error.json", result: changeset)
   end
 end
