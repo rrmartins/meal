@@ -12,8 +12,7 @@ config :meal,
 
 config :meal, Meal.Repo,
   migration_primary_key: [type: :binary_id],
-  migration_foreign_key: [type: :binary_id],
-  migration_timestamps: [type: :utc_datetime_usec]
+  migration_foreign_key: [type: :binary_id]
 
 # Configures the endpoint
 config :meal, MealWeb.Endpoint,
