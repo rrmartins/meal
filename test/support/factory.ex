@@ -1,5 +1,5 @@
 defmodule Meal.Factory do
-  use ExMachina.Ecto, repo: Rockelivery.Repo
+  use ExMachina.Ecto, repo: Meal.Repo
 
   alias Meal.Meal
 
@@ -12,11 +12,11 @@ defmodule Meal.Factory do
   end
 
   def meal_factory do
-    %Meal{
+     %Meal{
+      id: "47d5430a-9569-40d7-9a33-222aaedb8e29",
       description: "Misto quente",
-      calories: "213",
-      publication_date: "2021-03-26T13:59:13Z",
-      id: "7425ecb1-a6d4-4737-b2f9-89fae26b5a8b"
+      calories: "300",
+      publication_date: ~U[2021-03-28 13:59:13Z]
     }
   end
 end
