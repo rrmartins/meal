@@ -5,7 +5,9 @@ defmodule Meal.Error do
 
   defstruct @keys
 
-  def build(status, result), do: %__MODULE__{status: status, result: result}
+  def build(status, result) do
+    %__MODULE__{status: status, result: result}
+  end
 
   def build_meal_not_found_error, do: build(:not_found, "meal not found")
 end
