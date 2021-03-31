@@ -4,14 +4,13 @@ defmodule Meal.Meal do
 
   @primary_key {:id, :binary_id, autogenerate: true}
 
-  @require_params [:description, :calories]
-  @require_with_params [:description, :date, :calories]
+  @require_params [:description, :publication_date, :calories]
 
-  @derive {Jason.Encoder, only: [:id, :description, :date, :calories]}
+  @derive {Jason.Encoder, only: [:id, :description, :publication_date, :calories]}
 
   schema "meals" do
     field :description, :string
-    field :date, :naive_datetime
+    field :publication_date, :utc_datetime
     field :calories, :string
 
     timestamps()
@@ -19,12 +18,7 @@ defmodule Meal.Meal do
 
   def changeset(struct \\ %__MODULE__{}, params) do
     struct
-    |> put_date()
     |> cast(params, @require_params)
-    |> validate_required(@require_with_params)
-  end
-
-  defp put_date(struct) do
-    change(struct, %{date: NaiveDateTime.utc_now()})
+    |> validate_required(@require_params)
   end
 end
