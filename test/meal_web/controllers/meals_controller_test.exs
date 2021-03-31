@@ -151,4 +151,46 @@ defmodule MealWeb.MealsControllerTest do
       assert expected_response == response
     end
   end
+
+  describe "delete/2" do
+    test "when there is a meal with the given id, deletes the meal", %{conn: conn} do
+      id = "446968d2-1878-48cc-a7bd-d45638e19508"
+
+      insert(:meal, id: id)
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> response(:no_content)
+
+      assert "" == response
+    end
+
+    test "when there isn\'t a meal with the given id, returns an error", %{conn: conn} do
+      id = "31319c5f-2411-4e29-a9be-1475261d2949"
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> json_response(:not_found)
+
+      expected_response = %{"message" => "meal not found"}
+
+      assert expected_response == response
+    end
+
+    test "when the given id is not valid, returns an error", %{conn: conn} do
+      id = "12345"
+
+      response =
+        conn
+        |> delete(Routes.meals_path(conn, :delete, id))
+        |> json_response(:bad_request)
+
+      expected_response = %{"message" => "Invalid id format"}
+
+      assert expected_response == response
+    end
+  end
+
 end
