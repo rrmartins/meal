@@ -9,7 +9,11 @@ defmodule Meal.Users.CreateTest do
 
   describe "call/1" do
     test "when all params are valid, returns the meal" do
-      params = build(:meal_params)
+      user_id = "d3269a1f-c362-4396-866b-7373abadea38"
+
+      insert(:user, id: user_id)
+
+      params = build(:meal_params, user_id: user_id)
 
       response = Create.call(params)
 

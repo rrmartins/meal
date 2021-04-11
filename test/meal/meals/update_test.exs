@@ -8,6 +8,7 @@ defmodule Meal.Meals.UpdateTest do
 
   describe "call/1" do
     test "when meal exists, updates the meal" do
+      insert(:user)
       insert(:meal)
 
       params = %{

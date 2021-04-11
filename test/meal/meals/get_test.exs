@@ -8,6 +8,7 @@ defmodule Meal.Meals.GetTest do
 
   describe "by_id/1" do
     test "when meal exists, returns the meal" do
+      insert(:user)
       insert(:meal)
 
       response =
